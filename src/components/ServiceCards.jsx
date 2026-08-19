@@ -1,180 +1,233 @@
-import React from "react";
+import React, { useState } from "react";
 
-import {
-  Palette,
-  TrendingUp,
-  Users,
-  Search,
-  Video,
-  Megaphone,
-} from "lucide-react";
+const ServiceCards = ({ services }) => {
+  const [active, setActive] = useState(null);
 
-const serviceCards = [
-  {
-    title: "BRANDING & STRATEGY",
-    description:
-      "Create a magnetic identity that your audience can’t ignore.",
-    icon: Palette,
-  },
-  {
-    title: "PERFORMANCE MARKETING",
-    description:
-      "From Meta to Google, every ad is built to convert.",
-    icon: TrendingUp,
-  },
-  {
-    title: "INFLUENCER MARKETING",
-    description:
-      "Partner with creators who actually influence.",
-    icon: Users,
-  },
-  {
-    title: "SEO & ORM",
-    description:
-      "Be discovered. Stay trusted. Grow organically.",
-    icon: Search,
-  },
-  {
-    title: "CONTENT CREATION & UGC",
-    description:
-      "From viral reels to high-converting UGC campaigns.",
-    icon: Video,
-  },
-  {
-    title: "PR & MEDIA OUTREACH",
-    description:
-      "Get featured in top publications & channels that matter.",
-    icon: Megaphone,
-  },
-];
-
-const ServiceCards = () => {
   return (
-    <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-2">
 
-      {serviceCards.map((service, index) => {
-        const Icon = service.icon;
+      {services.map((service, index) => {
+
+        const isActive = active === index;
 
         return (
-          <div
-            key={index}
-            className="
-              group relative min-h-[220px] overflow-hidden
-              rounded-[24px]
-              border border-white/10
-              bg-[#111111]
+          <article
+            key={service.number}
+            className={`
+              group
+              relative
+              min-h-[360px]
+              overflow-hidden
+              rounded-[28px]
+              border
+              border-white/10
+              bg-white/[0.02]
               p-7
-              transition-all duration-500 ease-out
-              hover:-translate-y-2
-              hover:border-white/30
-              hover:bg-[#151515]
-              hover:shadow-[0_20px_50px_rgba(255,255,255,0.06)]
-            "
+              transition-all
+              duration-700
+              md:p-9
+
+              hover:-translate-y-1
+              hover:border-white/25
+
+              ${
+                isActive
+                  ? "border-white/25"
+                  : ""
+              }
+            `}
           >
 
-            {/* Subtle hover glow */}
+            {/* =========================
+                GLOW
+            ========================== */}
+
             <div
-              className="
+              className={`
                 pointer-events-none
-                absolute -right-20 -top-20
-                h-40 w-40
+                absolute
+                -right-24
+                -top-24
+                h-72
+                w-72
                 rounded-full
-                bg-white/5
+                bg-white/[0.035]
                 blur-3xl
-                opacity-0
-                transition-opacity duration-700
-                group-hover:opacity-100
-              "
+                transition-all
+                duration-700
+
+                ${
+                  isActive
+                    ? "scale-125 bg-white/[0.07]"
+                    : "group-hover:scale-110"
+                }
+              `}
             />
 
-            {/* Content */}
-            <div className="relative z-10">
+            {/* =========================
+                NUMBER + ICON
+            ========================== */}
 
-              <div className="flex items-start gap-5">
+            <div className="relative z-10 flex items-start justify-between">
 
-                {/* Icon */}
-                <div
-                  className="
-                    flex h-12 w-12 shrink-0
-                    items-center justify-center
-                    rounded-full
-                    border border-white/10
-                    bg-[#222222]
-                    text-gray-300
-                    transition-all duration-500
-                    group-hover:scale-110
-                    group-hover:border-white/30
-                    group-hover:bg-white
-                    group-hover:text-black
-                  "
-                >
-                  <Icon
-                    size={22}
-                    strokeWidth={1.8}
-                  />
-                </div>
+              <span className="text-xs tracking-[0.3em] text-gray-600">
+                {service.number}
+              </span>
 
-                {/* Text */}
-                <div>
+              <button
+                type="button"
+                onClick={() =>
+                  setActive(isActive ? null : index)
+                }
+                aria-label={`Open ${service.title}`}
+                className={`
+                  flex
+                  h-12
+                  w-12
+                  cursor-pointer
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/[0.03]
+                  text-xl
+                  text-gray-500
+                  transition-all
+                  duration-500
 
-                  <h3
-                    className="
-                      text-lg font-medium tracking-wide
-                      transition-transform duration-500
-                      group-hover:translate-x-1
-                    "
-                  >
-                    {service.title}
-                  </h3>
+                  hover:border-white/40
+                  hover:bg-white
+                  hover:text-black
 
-                  <p
-                    className="
-                      mt-3 max-w-sm
-                      text-sm leading-relaxed
-                      text-gray-400
-                      transition-colors duration-500
-                      group-hover:text-gray-300
-                    "
-                  >
-                    {service.description}
-                  </p>
-
-                </div>
-
-              </div>
+                  ${
+                    isActive
+                      ? "rotate-45 bg-white text-black"
+                      : ""
+                  }
+                `}
+              >
+                +
+              </button>
 
             </div>
 
-            {/* Learn More */}
+            {/* =========================
+                TITLE
+            ========================== */}
+
+            <div className="relative z-10 mt-24">
+
+              <h3
+                className="
+                  text-3xl
+                  font-medium
+                  tracking-[-0.045em]
+                  text-white
+                  transition-transform
+                  duration-500
+                  group-hover:translate-x-1
+                  md:text-4xl
+                "
+              >
+                {service.title}
+              </h3>
+
+            </div>
+
+            {/* =========================
+                DESCRIPTION
+            ========================== */}
+
+            <div
+              className={`
+                relative
+                z-10
+                overflow-hidden
+                transition-all
+                duration-700
+
+                ${
+                  isActive
+                    ? "mt-6 max-h-32 opacity-100"
+                    : "mt-0 max-h-0 opacity-0"
+                }
+              `}
+            >
+
+              <p className="max-w-xl text-sm leading-6 text-gray-500 md:text-base">
+                {service.description}
+              </p>
+
+            </div>
+
+            {/* =========================
+                LEARN MORE
+            ========================== */}
+
             <button
+              type="button"
+              onClick={() =>
+                setActive(isActive ? null : index)
+              }
               className="
-                absolute bottom-7 left-7 right-7
-                flex items-center justify-center gap-4
-                rounded-full
-                border border-white/10
-                bg-white/10
-                py-3
-                text-sm
-                text-gray-300
-                transition-all duration-500
-                group-hover:border-white
-                group-hover:bg-white
-                group-hover:text-black
+                group/learn
+                absolute
+                bottom-8
+                left-7
+                flex
+                cursor-pointer
+                items-center
+                gap-3
+                text-xs
+                uppercase
+                tracking-[0.25em]
+                text-gray-500
+                transition-colors
+                duration-300
+
+                hover:text-white
+
+                md:left-9
               "
             >
-              Learn More
+
+              <span>
+                {isActive ? "Close" : "Learn More"}
+              </span>
 
               <span
                 className="
-                  transition-transform duration-500
-                  group-hover:translate-x-2
+                  text-base
+                  transition-transform
+                  duration-300
+                  group-hover/learn:translate-x-1
                 "
               >
                 →
               </span>
+
             </button>
 
-          </div>
+            {/* =========================
+                CARD INDEX
+            ========================== */}
+
+            <span
+              className="
+                absolute
+                bottom-8
+                right-7
+                text-[10px]
+                tracking-[0.3em]
+                text-gray-700
+                md:right-9
+              "
+            >
+              0{index + 1}
+            </span>
+
+          </article>
         );
       })}
 

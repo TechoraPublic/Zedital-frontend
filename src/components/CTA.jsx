@@ -30,7 +30,7 @@ const CTA = () => {
       className="
         relative
         overflow-hidden
-        bg-[#0b0b0b]
+        bg-transparent
         px-6
         py-24
         text-white
@@ -40,10 +40,11 @@ const CTA = () => {
       "
     >
       {/* ==============================
-          BACKGROUND
+          BACKGROUND GLOW
       =============================== */}
 
       <div className="pointer-events-none absolute inset-0">
+
         <div
           className="
             absolute
@@ -69,6 +70,7 @@ const CTA = () => {
             blur-[120px]
           "
         />
+
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -136,6 +138,7 @@ const CTA = () => {
               {/* Small Heading */}
 
               <div className="mb-8 flex items-center gap-3">
+
                 <span className="h-2 w-2 rounded-full bg-white" />
 
                 <span
@@ -148,6 +151,7 @@ const CTA = () => {
                 >
                   Get In Touch
                 </span>
+
               </div>
 
               {/* Main Heading */}
@@ -179,7 +183,9 @@ const CTA = () => {
                   Talk
                 </span>
 
-                <span className="text-gray-700">.</span>
+                <span className="text-gray-700">
+                  .
+                </span>
               </h2>
 
               {/* Description */}
@@ -228,6 +234,7 @@ const CTA = () => {
               >
 
                 <div>
+
                   <p
                     className="
                       mb-2
@@ -251,9 +258,11 @@ const CTA = () => {
                   >
                     hello@example.com
                   </a>
+
                 </div>
 
                 <div>
+
                   <p
                     className="
                       mb-2
@@ -274,10 +283,12 @@ const CTA = () => {
                   >
                     India · Worldwide
                   </span>
+
                 </div>
 
               </div>
             </div>
+
           </div>
 
           {/* ==========================
@@ -289,9 +300,18 @@ const CTA = () => {
               rounded-[28px]
               border
               border-white/10
-              bg-[#111111]
+
+              /* TRANSPARENT / GLASS */
+              bg-white/[0.025]
+              backdrop-blur-[3px]
+
               p-7
               sm:p-9
+
+              transition-all
+              duration-500
+              hover:border-white/20
+              hover:bg-white/[0.035]
             "
           >
 
@@ -331,6 +351,7 @@ const CTA = () => {
               {/* NAME */}
 
               <div className="group">
+
                 <label
                   htmlFor="name"
                   className="
@@ -369,11 +390,13 @@ const CTA = () => {
                     focus:border-white
                   "
                 />
+
               </div>
 
               {/* EMAIL */}
 
               <div className="group">
+
                 <label
                   htmlFor="email"
                   className="
@@ -412,11 +435,13 @@ const CTA = () => {
                     focus:border-white
                   "
                 />
+
               </div>
 
               {/* MESSAGE */}
 
               <div className="group">
+
                 <label
                   htmlFor="message"
                   className="
@@ -457,6 +482,7 @@ const CTA = () => {
                     focus:border-white
                   "
                 />
+
               </div>
 
               {/* SUBMIT */}
@@ -481,6 +507,7 @@ const CTA = () => {
                   hover:bg-gray-300
                 "
               >
+
                 <span>
                   Send Inquiry
                 </span>
@@ -495,6 +522,7 @@ const CTA = () => {
                 >
                   →
                 </span>
+
               </button>
 
             </form>
@@ -515,6 +543,7 @@ const CTA = () => {
             </p>
 
           </div>
+
         </div>
 
         {/* ==============================

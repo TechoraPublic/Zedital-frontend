@@ -2,6 +2,7 @@ import React from "react";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa6";
 import founder from "../assets/founder.png";
+
 const achievements = [
   {
     title: "YOUNGEST ENTREPRENEUR OF UTTARAKHAND",
@@ -20,12 +21,26 @@ const achievements = [
 
 export default function FounderSection() {
   return (
-    <section className="relative overflow-hidden bg-black px-5 py-12 text-white sm:px-8 lg:px-10 lg:py-16">
-      <div className="mx-auto max-w-[1400px]">
+    <section
+      className="
+        relative
+        z-0
+        overflow-hidden
+        bg-transparent
+        px-5
+        py-12
+        text-white
+        sm:px-8
+        lg:px-10
+        lg:py-16
+      "
+    >
+      <div className="relative z-10 mx-auto max-w-[1400px]">
 
         {/* ================= HEADER ================= */}
 
-        <div className="border-b border-white/50 pb-8 lg:pb-10">
+        <div className="border-b border-white/20 pb-8 lg:pb-10">
+
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
 
             <h2 className="text-[42px] font-light leading-none tracking-[-2px] sm:text-5xl lg:text-[50px]">
@@ -38,13 +53,16 @@ export default function FounderSection() {
             <div className="flex items-center gap-8 lg:gap-16">
 
               {/* Decorative Arrow */}
+
               <div className="hidden w-[170px] lg:block">
+
                 <svg
                   viewBox="0 0 180 70"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-full"
                 >
+
                   <path
                     d="M5 8C37 10 65 20 67 39C69 58 46 65 37 49C28 33 45 11 76 10C110 9 137 22 169 37"
                     stroke="rgba(255,255,255,0.22)"
@@ -59,28 +77,56 @@ export default function FounderSection() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
+
                 </svg>
+
               </div>
 
               {/* More About Us */}
+
               <a
                 href="#about"
-                className="group flex items-center gap-2 border-b border-white pb-0.5 text-sm text-white transition-colors duration-300 hover:text-gray-400"
+                className="
+                  group
+                  flex
+                  items-center
+                  gap-2
+                  border-b
+                  border-white/60
+                  pb-0.5
+                  text-sm
+                  text-white
+                  transition-colors
+                  duration-300
+                  hover:text-gray-400
+                "
               >
                 More About Us
 
                 <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
                   →
                 </span>
+
               </a>
 
             </div>
+
           </div>
+
         </div>
 
         {/* ================= MAIN CONTENT ================= */}
 
-        <div className="grid gap-12 pt-16 lg:grid-cols-[minmax(360px,0.9fr)_minmax(500px,1.2fr)] lg:gap-20 lg:pt-20">
+        <div
+          className="
+            grid
+            gap-12
+            pt-16
+            lg:grid-cols-[minmax(360px,0.9fr)_minmax(500px,1.2fr)]
+            lg:gap-20
+            lg:pt-20
+          "
+        >
 
           {/* ================= LEFT COLUMN ================= */}
 
@@ -111,7 +157,23 @@ export default function FounderSection() {
               <a
                 href="#instagram"
                 aria-label="Instagram"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-transparent
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:border-white
+                  hover:bg-white
+                  hover:text-black
+                "
               >
                 <FaInstagram size={20} />
               </a>
@@ -121,7 +183,23 @@ export default function FounderSection() {
               <a
                 href="#linkedin"
                 aria-label="LinkedIn"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-black"
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-transparent
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:border-white
+                  hover:bg-white
+                  hover:text-black
+                "
               >
                 <FaLinkedinIn size={19} />
               </a>
@@ -130,17 +208,42 @@ export default function FounderSection() {
 
             {/* Founder Image */}
 
-            <div className="group relative overflow-hidden rounded-[15px] border border-white/10">
+            <div
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[15px]
+                border
+                border-white/10
+              "
+            >
 
               <img
                 src={founder}
                 alt="Mohammad Zaid Khan"
-                className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                className="
+                  h-auto
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-700
+                  group-hover:scale-[1.02]
+                "
               />
 
               {/* Subtle Overlay */}
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/20
+                  to-transparent
+                "
+              />
 
             </div>
 
@@ -152,7 +255,14 @@ export default function FounderSection() {
 
             {/* Bio */}
 
-            <div className="max-w-[760px] text-[15px] leading-[1.65] text-white/70">
+            <div
+              className="
+                max-w-[760px]
+                text-[15px]
+                leading-[1.65]
+                text-white/70
+              "
+            >
 
               <p>
                 <span className="text-white">
@@ -202,7 +312,9 @@ export default function FounderSection() {
             </div>
 
           </div>
+
         </div>
+
       </div>
     </section>
   );
@@ -226,13 +338,13 @@ function AchievementCard({
         overflow-hidden
         border
         border-white/10
-        bg-white/[0.02]
+        bg-transparent
         px-8
         py-10
         transition-all
         duration-500
         hover:border-white/30
-        hover:bg-white/[0.04]
+        hover:bg-white/[0.02]
         sm:px-14
       "
       style={{
@@ -268,7 +380,16 @@ function AchievementCard({
             className="mt-0.5 shrink-0 text-white/70"
           />
 
-          <h4 className="max-w-[550px] text-[15px] font-medium leading-5 text-white sm:text-[16px]">
+          <h4
+            className="
+              max-w-[550px]
+              text-[15px]
+              font-medium
+              leading-5
+              text-white
+              sm:text-[16px]
+            "
+          >
             {title}
           </h4>
 

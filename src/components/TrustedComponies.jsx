@@ -58,10 +58,24 @@ const companies = [
 
 const TrustedCompanies = () => {
   return (
-    <section className="relative overflow-hidden bg-[#0b0b0b] px-4 py-20 sm:px-6 lg:px-8">
+    <section
+      className="
+        relative
+        overflow-hidden
+        px-6
+        py-28
+        text-white
+        lg:px-10
+        lg:py-36
+      "
+    >
 
-      {/* Background Glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* =========================================
+          BACKGROUND GLOW
+      ========================================== */}
+
+      <div className="pointer-events-none absolute inset-0">
+
         <div
           className="
             absolute
@@ -72,122 +86,325 @@ const TrustedCompanies = () => {
             -translate-x-1/2
             -translate-y-1/2
             rounded-full
-            bg-orange-400/[0.035]
+            bg-white/[0.025]
             blur-[150px]
           "
         />
-      </div>
-
-      {/* Heading */}
-      <div className="relative z-10 mx-auto mb-12 max-w-4xl text-center">
-
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-white/40">
-          Trusted Partners
-        </p>
-
-        <h2 className="text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-          Trusted By{" "}
-          <span className="font-serif italic text-[#ff9b83]">
-            245+ Big Companies
-          </span>
-        </h2>
-
-        <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-white/40 sm:text-base">
-          We have helped ambitious brands build better digital experiences
-          and grow their businesses.
-        </p>
 
       </div>
 
-      {/* Logo Container */}
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          max-w-[1350px]
-          overflow-hidden
-          rounded-[24px]
-          border
-          border-white/[0.08]
-          bg-white/[0.025]
-          shadow-2xl
-          shadow-black/20
-        "
-      >
+      <div className="relative z-10 mx-auto max-w-7xl">
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {/* =========================================
+            HEADER
+        ========================================== */}
 
-          {companies.map((logo, index) => (
-            <div
-              key={index}
-              className="
-                group
-                relative
-                flex
-                h-[135px]
-                items-center
-                justify-center
-                overflow-hidden
-                border-b
-                border-r
-                border-white/[0.07]
-                px-6
-                py-8
-                transition-all
-                duration-500
-                hover:bg-white/[0.045]
-              "
-            >
+        <div
+          className="
+            mb-16
+            grid
+            gap-10
+            lg:grid-cols-[1.15fr_0.85fr]
+            lg:items-end
+          "
+        >
 
-              {/* Hover Glow */}
-              <div
+          {/* LEFT */}
+
+          <div>
+
+            <div className="mb-7 flex items-center gap-3">
+
+              <span
                 className="
-                  pointer-events-none
-                  absolute
-                  left-1/2
-                  top-1/2
-                  h-24
-                  w-32
-                  -translate-x-1/2
-                  -translate-y-1/2
+                  h-2
+                  w-2
                   rounded-full
-                  bg-white/[0.04]
-                  opacity-0
-                  blur-2xl
-                  transition-opacity
-                  duration-500
-                  group-hover:opacity-100
+                  bg-white
+                  shadow-[0_0_14px_rgba(255,255,255,0.5)]
                 "
               />
 
-              {/* Logo */}
-              <img
-                src={logo}
-                alt={`Trusted company ${index + 1}`}
-                loading="lazy"
+              <span
                 className="
-                  relative
-                  z-10
-                  max-h-[58px]
-                  max-w-[155px]
-                  w-auto
-                  object-contain
-                  grayscale
-                  opacity-50
-                  transition-all
-                  duration-500
-                  ease-out
-                  group-hover:scale-105
-                  group-hover:grayscale-0
-                  group-hover:opacity-100
+                  text-xs
+                  uppercase
+                  tracking-[0.4em]
+                  text-gray-300
                 "
-              />
+              >
+                Trusted Partners
+              </span>
 
             </div>
-          ))}
+
+            <h2
+              className="
+                text-[12vw]
+                font-black
+                uppercase
+                leading-[0.82]
+                tracking-[-0.07em]
+                sm:text-[9vw]
+                lg:text-[6.5vw]
+              "
+            >
+              Trusted By
+
+              <br />
+
+              <span
+                className="
+                  bg-gradient-to-r
+                  from-white
+                  via-gray-300
+                  to-gray-500
+                  bg-clip-text
+                  text-transparent
+                "
+              >
+                Big Brands
+              </span>
+
+              <span className="text-gray-500">.</span>
+            </h2>
+
+          </div>
+
+          {/* RIGHT */}
+
+          <div className="max-w-[440px]">
+
+            <p
+              className="
+                text-base
+                leading-7
+                text-gray-300
+                md:text-lg
+              "
+            >
+              From ambitious startups to established companies, we
+              partner with brands to create meaningful digital
+              experiences and measurable growth.
+            </p>
+
+            <div className="mt-7 flex items-center gap-4">
+
+              <span className="h-px w-12 bg-white/20" />
+
+              <span
+                className="
+                  text-[10px]
+                  uppercase
+                  tracking-[0.3em]
+                  text-gray-400
+                "
+              >
+                245+ Brands
+              </span>
+
+            </div>
+
+          </div>
 
         </div>
+
+        {/* =========================================
+            COMPANY GRID
+        ========================================== */}
+
+        <div
+          className="
+            rounded-[30px]
+            border
+            border-white/[0.10]
+            bg-white/[0.018]
+            p-2
+            shadow-2xl
+            shadow-black/20
+          "
+        >
+
+          <div
+            className="
+              grid
+              grid-cols-2
+              gap-3
+              sm:grid-cols-3
+              lg:grid-cols-4
+              xl:grid-cols-5
+            "
+          >
+
+            {companies.map((logo, index) => (
+
+              <div
+                key={index}
+                className="
+                  group
+                  relative
+                  flex
+                  h-[145px]
+                  cursor-pointer
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  rounded-[20px]
+                  border
+                  border-white/[0.08]
+                  bg-white/[0.025]
+                  px-6
+                  py-8
+                  transition-all
+                  duration-500
+
+                  hover:-translate-y-1
+                  hover:border-white/25
+                  hover:bg-white/[0.055]
+                "
+              >
+
+                {/* =================================
+                    HOVER GLOW
+                ================================== */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-1/2
+                    h-32
+                    w-40
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    rounded-full
+                    bg-white/[0.05]
+                    opacity-0
+                    blur-3xl
+                    transition-all
+                    duration-500
+                    group-hover:scale-125
+                    group-hover:opacity-100
+                  "
+                />
+
+                {/* =================================
+                    TOP LINE
+                ================================== */}
+
+                <div
+                  className="
+                    absolute
+                    left-5
+                    right-5
+                    top-4
+                    h-px
+                    bg-white/[0.06]
+                    transition-all
+                    duration-500
+                    group-hover:bg-white/10
+                  "
+                />
+
+                {/* =================================
+                    LOGO
+                    ORIGINAL COLORS
+                ================================== */}
+
+                <img
+                  src={logo}
+                  alt={`Trusted company ${index + 1}`}
+                  loading="lazy"
+                  className="
+                    relative
+                    z-10
+                    h-auto
+                    max-h-[62px]
+                    w-auto
+                    max-w-[165px]
+                    object-contain
+                    opacity-100
+                    transition-transform
+                    duration-500
+                    ease-out
+                    group-hover:scale-[1.25]
+                  "
+                />
+
+                {/* =================================
+                    NUMBER
+                ================================== */}
+
+                <span
+                  className="
+                    absolute
+                    bottom-4
+                    right-5
+                    text-[9px]
+                    tracking-[0.25em]
+                    text-gray-600
+                    transition-colors
+                    duration-500
+                    group-hover:text-gray-300
+                  "
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* =========================================
+            BOTTOM LINE
+        ========================================== */}
+
+        <div className="mt-10 flex items-center gap-5">
+
+          <span
+            className="
+              text-[10px]
+              uppercase
+              tracking-[0.35em]
+              text-gray-400
+            "
+          >
+            Collaboration
+          </span>
+
+          <div className="h-px flex-1 bg-white/10" />
+
+          <span
+            className="
+              text-[10px]
+              uppercase
+              tracking-[0.35em]
+              text-gray-400
+            "
+          >
+            Trust
+          </span>
+
+          <div className="h-px flex-1 bg-white/10" />
+
+          <span
+            className="
+              text-[10px]
+              uppercase
+              tracking-[0.35em]
+              text-gray-400
+            "
+          >
+            Growth
+          </span>
+
+        </div>
+
       </div>
 
     </section>

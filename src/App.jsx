@@ -16,21 +16,51 @@ import AboutFounder from "./components/AboutFounder.jsx";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0b0b0b] text-white">
-      <Navbar />
-      <Hero />
-      <Marquee />
-      <About />
-      <Marquee />
-      <Services />
-      <Stats />
-      <TrustedCompanies />
-      <Work />
-     <AboutFounder /> 
-      <Process />
-      <Testimonial />
-      <CTA />
-      <Footer />
+    <div className="relative min-h-screen overflow-x-hidden bg-[#111315] text-white">
+
+      {/* =========================================
+          FIXED BACKGROUND
+          Hero ke peeche rahega
+      ========================================== */}
+
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#111315]" />
+
+      {/* =========================================
+          CONTENT
+      ========================================== */}
+
+      <div className="relative z-10">
+
+        <Navbar />
+
+        <Hero />
+
+        <Marquee />
+
+        <About />
+
+        <Marquee />
+
+        <Services />
+
+        <Stats />
+
+        <TrustedCompanies />
+
+        <Work />
+
+        <AboutFounder />
+
+        {/* <Process /> */}
+
+        <Testimonial />
+
+        <CTA />
+
+        <Footer />
+
+      </div>
+
     </div>
   );
 }

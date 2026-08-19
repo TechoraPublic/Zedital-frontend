@@ -25,28 +25,85 @@ const steps = [
   },
 ];
 
-export default function HowItWorks() {
+export default function Process() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#0b0b0b] px-6 py-24 text-white lg:px-10 lg:py-32">
+    <section
+      className="
+        relative
+        z-0
+        w-full
+        overflow-hidden
+        bg-transparent
+        px-6
+        py-24
+        text-white
+        lg:px-10
+        lg:py-32
+      "
+    >
+      {/* =========================================
+          SUBTLE BACKGROUND GLOW
+      ========================================== */}
 
-      {/* Subtle Background Glow */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[15%] top-[25%] h-[400px] w-[400px] rounded-full bg-white/[0.015] blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 z-0">
 
-        <div className="absolute bottom-[10%] right-[10%] h-[350px] w-[350px] rounded-full bg-white/[0.01] blur-[120px]" />
+        <div
+          className="
+            absolute
+            left-[15%]
+            top-[25%]
+            h-[400px]
+            w-[400px]
+            rounded-full
+            bg-white/[0.015]
+            blur-[120px]
+          "
+        />
+
+        <div
+          className="
+            absolute
+            bottom-[10%]
+            right-[10%]
+            h-[350px]
+            w-[350px]
+            rounded-full
+            bg-white/[0.01]
+            blur-[120px]
+          "
+        />
+
       </div>
+
+      {/* =========================================
+          CONTENT
+      ========================================== */}
 
       <div className="relative z-10 mx-auto w-full max-w-7xl">
 
-        {/* ================= HEADER ================= */}
+        {/* =========================================
+            HEADER
+        ========================================== */}
 
-        <div className="mb-16 flex flex-col justify-between gap-8 border-b border-white/10 pb-10 lg:flex-row lg:items-end">
+        <div
+          className="
+            mb-16
+            flex
+            flex-col
+            justify-between
+            gap-8
+            border-b
+            border-white/10
+            pb-10
+            lg:flex-row
+            lg:items-end
+          "
+        >
 
           <div>
 
-            {/* Eyebrow */}
             <div className="mb-7 flex items-center gap-3">
 
               <span className="h-2 w-2 rounded-full bg-white" />
@@ -57,12 +114,29 @@ export default function HowItWorks() {
 
             </div>
 
-            {/* Heading */}
-            <h2 className="text-[13vw] font-black uppercase leading-[0.78] tracking-[-0.07em] md:text-[10vw] lg:text-[7vw]">
+            <h2
+              className="
+                text-[13vw]
+                font-black
+                uppercase
+                leading-[0.78]
+                tracking-[-0.07em]
+                md:text-[10vw]
+                lg:text-[7vw]
+              "
+            >
               Our
               <br />
 
-              <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+              <span
+                className="
+                  bg-gradient-to-r
+                  from-white
+                  to-gray-500
+                  bg-clip-text
+                  text-transparent
+                "
+              >
                 Process
               </span>
 
@@ -71,7 +145,6 @@ export default function HowItWorks() {
 
           </div>
 
-          {/* Description */}
           <p className="max-w-[330px] text-sm leading-6 text-gray-500 lg:mb-2">
             From strategy to execution, we turn ambitious ideas into
             meaningful digital experiences that drive growth.
@@ -79,17 +152,30 @@ export default function HowItWorks() {
 
         </div>
 
-        {/* ================= MAIN CONTENT ================= */}
+        {/* =========================================
+            MAIN CONTENT
+        ========================================== */}
 
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20">
 
-          {/* ================= LEFT ================= */}
+          {/* =========================================
+              LEFT
+          ========================================== */}
 
           <div className="lg:sticky lg:top-24 lg:h-fit">
 
             {/* IMAGE */}
 
-            <div className="group relative overflow-hidden rounded-[22px] border border-white/10">
+            <div
+              className="
+                group
+                relative
+                overflow-hidden
+                rounded-[22px]
+                border
+                border-white/10
+              "
+            >
 
               <img
                 src={workPic}
@@ -108,10 +194,31 @@ export default function HowItWorks() {
               />
 
               {/* Image Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/70
+                  via-black/5
+                  to-transparent
+                "
+              />
 
               {/* Image Labels */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+
+              <div
+                className="
+                  absolute
+                  bottom-6
+                  left-6
+                  right-6
+                  flex
+                  items-center
+                  justify-between
+                "
+              >
 
                 <span className="text-[10px] uppercase tracking-[0.3em] text-white/70">
                   Your Brand
@@ -133,13 +240,34 @@ export default function HowItWorks() {
 
             <div className="mt-10">
 
-              <h3 className="text-4xl font-black uppercase leading-[0.85] tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+              <h3
+                className="
+                  text-4xl
+                  font-black
+                  uppercase
+                  leading-[0.85]
+                  tracking-[-0.06em]
+                  sm:text-5xl
+                  lg:text-6xl
+                "
+              >
                 Your Success
                 <br />
 
                 Is Our{" "}
 
-                <span className="bg-gradient-to-r from-white to-gray-500 bg-clip-text font-serif font-normal italic text-transparent">
+                <span
+                  className="
+                    bg-gradient-to-r
+                    from-white
+                    to-gray-500
+                    bg-clip-text
+                    font-serif
+                    font-normal
+                    italic
+                    text-transparent
+                  "
+                >
                   Strategy
                 </span>
               </h3>
@@ -179,13 +307,22 @@ export default function HowItWorks() {
 
           </div>
 
-          {/* ================= RIGHT ================= */}
+          {/* =========================================
+              RIGHT
+          ========================================== */}
 
           <div>
 
-            {/* Process Header */}
-
-            <div className="flex items-center justify-between border-b border-white/10 pb-5">
+            <div
+              className="
+                flex
+                items-center
+                justify-between
+                border-b
+                border-white/10
+                pb-5
+              "
+            >
 
               <span className="text-xs uppercase tracking-[0.4em] text-gray-500">
                 Our Process
@@ -207,14 +344,17 @@ export default function HowItWorks() {
                 <article
                   key={step.number}
                   onClick={() => setActive(index)}
-                  className="group cursor-pointer border-b border-white/10"
+                  className="
+                    group
+                    cursor-pointer
+                    border-b
+                    border-white/10
+                  "
                 >
 
                   {/* TOP ROW */}
 
                   <div className="flex items-center justify-between py-8">
-
-                    {/* Number */}
 
                     <span
                       className={`text-xs tracking-[0.25em] transition-all duration-300 ${
@@ -225,8 +365,6 @@ export default function HowItWorks() {
                     >
                       {step.number}
                     </span>
-
-                    {/* Right Side */}
 
                     <div className="flex items-center gap-5">
 
@@ -239,8 +377,6 @@ export default function HowItWorks() {
                       >
                         {step.tag}
                       </span>
-
-                      {/* Button */}
 
                       <button
                         type="button"
@@ -255,6 +391,7 @@ export default function HowItWorks() {
                           border
                           transition-all
                           duration-300
+
                           ${
                             isActive
                               ? "border-white bg-white text-black"
@@ -283,8 +420,6 @@ export default function HowItWorks() {
 
                     <div className="overflow-hidden">
 
-                      {/* Title */}
-
                       <h3
                         className={`
                           text-5xl
@@ -296,6 +431,7 @@ export default function HowItWorks() {
                           duration-300
                           sm:text-6xl
                           lg:text-[70px]
+
                           ${
                             isActive
                               ? "text-white"
@@ -305,8 +441,6 @@ export default function HowItWorks() {
                       >
                         {step.title}
                       </h3>
-
-                      {/* Description */}
 
                       <p className="mt-6 max-w-[500px] text-sm leading-6 text-gray-500">
                         {step.description}
@@ -351,7 +485,9 @@ export default function HowItWorks() {
             </div>
 
           </div>
+
         </div>
+
       </div>
     </section>
   );

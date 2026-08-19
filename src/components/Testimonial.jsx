@@ -92,13 +92,20 @@ function BlogCard({ blog }) {
         rounded-[24px]
         border
         border-white/10
-        bg-[#111111]
+
+        /* TRANSPARENT CARD */
+        bg-white/[0.02]
+
         p-7
         text-white
+        backdrop-blur-[2px]
+
         transition-all
         duration-500
+
         hover:-translate-y-1
         hover:border-white/25
+        hover:bg-white/[0.04]
 
         max-md:h-auto
         max-md:min-h-[430px]
@@ -107,7 +114,10 @@ function BlogCard({ blog }) {
         max-md:p-6
       "
     >
-      {/* Top Row */}
+      {/* =====================================================
+          TOP ROW
+      ====================================================== */}
+
       <div className="flex items-center justify-between">
         <Stars />
 
@@ -123,7 +133,10 @@ function BlogCard({ blog }) {
         </span>
       </div>
 
-      {/* Quote */}
+      {/* =====================================================
+          QUOTE
+      ====================================================== */}
+
       <div
         className="
           mt-4
@@ -137,7 +150,10 @@ function BlogCard({ blog }) {
         &ldquo;
       </div>
 
-      {/* Title */}
+      {/* =====================================================
+          TITLE
+      ====================================================== */}
+
       <h3
         className="
           mt-3
@@ -150,7 +166,10 @@ function BlogCard({ blog }) {
         {blog.title}
       </h3>
 
-      {/* Description */}
+      {/* =====================================================
+          DESCRIPTION
+      ====================================================== */}
+
       <p
         className="
           mt-3
@@ -163,9 +182,13 @@ function BlogCard({ blog }) {
         {blog.description}
       </p>
 
-      {/* Bottom */}
+      {/* =====================================================
+          BOTTOM
+      ====================================================== */}
+
       <div className="mt-auto pt-6">
         <div className="flex items-center gap-4">
+
           {/* Author Image */}
 
           <div
@@ -177,7 +200,9 @@ function BlogCard({ blog }) {
               rounded-full
               border
               border-white/10
-              bg-[#222]
+
+              /* TRANSPARENT IMAGE BACKGROUND */
+              bg-white/[0.03]
             "
           >
             <img
@@ -245,6 +270,7 @@ function BlogCard({ blog }) {
           "
         >
           Read More
+
           <span
             className="
               text-base
@@ -258,7 +284,9 @@ function BlogCard({ blog }) {
         </button>
       </div>
 
-      {/* Hover Line */}
+      {/* =====================================================
+          HOVER LINE
+      ====================================================== */}
 
       <div
         className="
@@ -294,9 +322,12 @@ function ReviewIntro() {
         lg:block
       "
     >
-      {/* Person Image */}
+      {/* =====================================================
+          PERSON IMAGE
+      ====================================================== */}
 
       <div className="absolute left-0 top-5 z-10">
+
         <img
           src="/images/testimonial-person.png"
           alt="Client testimonial"
@@ -346,7 +377,9 @@ function ReviewIntro() {
         </button>
       </div>
 
-      {/* Bottom Card */}
+      {/* =====================================================
+          BOTTOM CARD
+      ====================================================== */}
 
       <div
         className="
@@ -360,9 +393,12 @@ function ReviewIntro() {
           items-center
           justify-between
           rounded-[24px]
+
+          /* LIGHT CARD IS KEPT */
           border
           border-black/10
           bg-white
+
           px-5
         "
       >
@@ -411,9 +447,9 @@ export default function Testimonials() {
   const sliderRef = useRef(null);
   const [active, setActive] = useState(0);
 
-  /* -----------------------------------------
+  /* =====================================================
      GO TO SLIDE
-  ----------------------------------------- */
+  ====================================================== */
 
   const goToSlide = (index) => {
     const slider = sliderRef.current;
@@ -432,9 +468,9 @@ export default function Testimonials() {
     setActive(index);
   };
 
-  /* -----------------------------------------
+  /* =====================================================
      NEXT
-  ----------------------------------------- */
+  ====================================================== */
 
   const nextSlide = () => {
     const next =
@@ -445,9 +481,9 @@ export default function Testimonials() {
     goToSlide(next);
   };
 
-  /* -----------------------------------------
+  /* =====================================================
      PREVIOUS
-  ----------------------------------------- */
+  ====================================================== */
 
   const previousSlide = () => {
     const previous =
@@ -464,20 +500,28 @@ export default function Testimonials() {
         relative
         min-h-screen
         overflow-hidden
-        bg-[#0b0b0b]
+
+        /* =========================================
+           TRANSPARENT MAIN BACKGROUND
+        ========================================== */
+        bg-transparent
+
         px-5
         py-24
         text-white
+
         sm:px-8
         lg:px-10
         lg:py-32
       "
     >
+
       {/* =====================================================
-          SUBTLE BACKGROUND
+          SUBTLE BACKGROUND GLOW
       ====================================================== */}
 
       <div className="pointer-events-none absolute inset-0">
+
         <div
           className="
             absolute
@@ -503,13 +547,19 @@ export default function Testimonials() {
             blur-[120px]
           "
         />
+
       </div>
 
       {/* =====================================================
-          HEADER
+          MAIN CONTAINER
       ====================================================== */}
 
       <div className="relative z-10 mx-auto max-w-7xl">
+
+        {/* ===================================================
+            HEADER
+        ==================================================== */}
+
         <div
           className="
             mb-16
@@ -518,9 +568,11 @@ export default function Testimonials() {
             pb-10
           "
         >
+
           {/* Eyebrow */}
 
           <div className="mb-7 flex items-center gap-3">
+
             <span className="h-2 w-2 rounded-full bg-white" />
 
             <span
@@ -533,6 +585,7 @@ export default function Testimonials() {
             >
               Testimonials
             </span>
+
           </div>
 
           {/* Heading */}
@@ -547,6 +600,7 @@ export default function Testimonials() {
               lg:items-end
             "
           >
+
             <h2
               className="
                 text-[13vw]
@@ -575,7 +629,10 @@ export default function Testimonials() {
                 They Say
               </span>
 
-              <span className="text-gray-700">.</span>
+              <span className="text-gray-700">
+                .
+              </span>
+
             </h2>
 
             <p
@@ -591,6 +648,7 @@ export default function Testimonials() {
               we've helped turn ideas into meaningful
               growth.
             </p>
+
           </div>
         </div>
 
@@ -606,6 +664,7 @@ export default function Testimonials() {
             lg:gap-12
           "
         >
+
           {/* LEFT INTRO */}
 
           <ReviewIntro />
@@ -615,6 +674,7 @@ export default function Testimonials() {
           ================================================= */}
 
           <div className="min-w-0 flex-1">
+
             <div
               ref={sliderRef}
               className="
@@ -632,6 +692,7 @@ export default function Testimonials() {
                 max-lg:px-1
               "
             >
+
               {blogs.map((blog) => (
                 <div
                   key={blog.id}
@@ -643,7 +704,9 @@ export default function Testimonials() {
                   <BlogCard blog={blog} />
                 </div>
               ))}
+
             </div>
+
           </div>
         </div>
 
@@ -662,9 +725,11 @@ export default function Testimonials() {
             pt-7
           "
         >
+
           {/* Progress */}
 
           <div className="flex items-center gap-4">
+
             <span
               className="
                 text-[10px]
@@ -685,6 +750,7 @@ export default function Testimonials() {
                 sm:block
               "
             >
+
               <div
                 className="
                   h-full
@@ -698,6 +764,7 @@ export default function Testimonials() {
                   }%`,
                 }}
               />
+
             </div>
 
             <span
@@ -709,11 +776,13 @@ export default function Testimonials() {
             >
               0{active + 1} / 0{blogs.length}
             </span>
+
           </div>
 
           {/* Desktop Arrows */}
 
           <div className="hidden items-center gap-2 lg:flex">
+
             <button
               type="button"
               onClick={previousSlide}
@@ -730,6 +799,7 @@ export default function Testimonials() {
                 text-white/50
                 transition-all
                 duration-300
+
                 hover:border-white
                 hover:bg-white
                 hover:text-black
@@ -753,11 +823,13 @@ export default function Testimonials() {
                 text-black
                 transition-all
                 duration-300
+
                 hover:bg-gray-300
               "
             >
               →
             </button>
+
           </div>
         </div>
 
@@ -766,6 +838,7 @@ export default function Testimonials() {
         ====================================================== */}
 
         <div className="mt-8 flex items-center justify-center gap-3">
+
           {blogs.map((blog, index) => (
             <button
               key={blog.id}
@@ -785,6 +858,7 @@ export default function Testimonials() {
               `}
             />
           ))}
+
         </div>
 
         {/* =====================================================
@@ -792,6 +866,7 @@ export default function Testimonials() {
         ====================================================== */}
 
         <div className="mt-7 flex justify-center gap-3 lg:hidden">
+
           <button
             type="button"
             onClick={previousSlide}
@@ -807,6 +882,7 @@ export default function Testimonials() {
               border-white/15
               text-white
               transition-all
+
               hover:border-white
               hover:bg-white
               hover:text-black
@@ -829,12 +905,15 @@ export default function Testimonials() {
               bg-white
               text-black
               transition-all
+
               hover:bg-gray-300
             "
           >
             →
           </button>
+
         </div>
+
       </div>
     </section>
   );
