@@ -7,20 +7,19 @@ import visionImage from "../assets/visionImage.png";
 import missionImage from "../assets/missionImage.png";
 
 /* =========================================================
-   3D PARTICLES
+   3D PARTICLE FIELD
 ========================================================= */
 
-const ParticleField = ({ count = 30 }) => {
+const ParticleField = ({ count = 55 }) => {
   const groupRef = useRef();
 
   useFrame((state) => {
     if (!groupRef.current) return;
 
-    groupRef.current.rotation.y =
-      state.clock.elapsedTime * 0.04;
+    const time = state.clock.elapsedTime;
 
-    groupRef.current.rotation.x =
-      Math.sin(state.clock.elapsedTime * 0.2) * 0.035;
+    groupRef.current.rotation.y = time * 0.035;
+    groupRef.current.rotation.x = Math.sin(time * 0.2) * 0.04;
   });
 
   const particles = Array.from({ length: count });
@@ -29,35 +28,99 @@ const ParticleField = ({ count = 30 }) => {
     <group ref={groupRef}>
       {particles.map((_, index) => {
         const angle = (index / count) * Math.PI * 2;
-        const radius = 1.4 + (index % 6) * 0.35;
+
+        const radius =
+          1.5 + (index % 7) * 0.32;
+
+        const x = Math.cos(angle) * radius;
+
+        const y =
+          Math.sin(index * 1.7) * 0.65;
+
+        const z = Math.sin(angle) * radius;
 
         return (
           <Float
             key={index}
-            speed={0.5 + (index % 3) * 0.15}
-            floatIntensity={0.25}
-            rotationIntensity={0.15}
+            speed={0.5 + (index % 4) * 0.15}
+            floatIntensity={0.3}
+            rotationIntensity={0.2}
           >
-            <mesh
-              position={[
-                Math.cos(angle) * radius,
-                Math.sin(index * 1.8) * 0.55,
-                Math.sin(angle) * radius,
-              ]}
-            >
+            <mesh position={[x, y, z]}>
               <sphereGeometry
-                args={[0.018 + (index % 3) * 0.008, 8, 8]}
+                args={[
+                  0.018 + (index % 4) * 0.008,
+                  8,
+                  8,
+                ]}
               />
 
               <meshBasicMaterial
                 color="#ffffff"
                 transparent
-                opacity={0.3 + (index % 3) * 0.08}
+                opacity={
+                  0.25 + (index % 4) * 0.08
+                }
               />
             </mesh>
           </Float>
         );
       })}
+    </group>
+  );
+};
+
+/* =========================================================
+   3D ORB
+========================================================= */
+
+const GlowOrb = () => {
+  const orbRef = useRef();
+
+  useFrame((state) => {
+    if (!orbRef.current) return;
+
+    const time = state.clock.elapsedTime;
+
+    orbRef.current.rotation.x =
+      time * 0.12;
+
+    orbRef.current.rotation.y =
+      time * 0.18;
+
+    const scale =
+      1 + Math.sin(time * 1.5) * 0.035;
+
+    orbRef.current.scale.set(
+      scale,
+      scale,
+      scale
+    );
+  });
+
+  return (
+    <group ref={orbRef}>
+      <mesh>
+        <sphereGeometry args={[0.65, 32, 32]} />
+
+        <meshBasicMaterial
+          color="#ffffff"
+          wireframe
+          transparent
+          opacity={0.08}
+        />
+      </mesh>
+
+      <mesh scale={1.15}>
+        <sphereGeometry args={[0.65, 24, 24]} />
+
+        <meshBasicMaterial
+          color="#ffffff"
+          wireframe
+          transparent
+          opacity={0.035}
+        />
+      </mesh>
     </group>
   );
 };
@@ -73,9 +136,17 @@ const MiniUniverse = () => {
         position: [0, 0, 5],
         fov: 45,
       }}
-      dpr={[1, 1.3]}
+      dpr={[1, 1.5]}
+      gl={{
+        antialias: true,
+        alpha: true,
+      }}
     >
-      <ParticleField />
+      <ambientLight intensity={0.5} />
+
+      <GlowOrb />
+
+      <ParticleField count={55} />
     </Canvas>
   );
 };
@@ -104,18 +175,25 @@ const InfoCard = ({
         border
         border-white/[0.09]
         bg-white/[0.035]
-        backdrop-blur-[2px]
+        backdrop-blur-[3px]
         transition-all
         duration-700
         ease-out
+
         hover:-translate-y-1
         hover:border-white/20
         hover:bg-white/[0.055]
-        ${open ? "min-h-[350px]" : "min-h-[275px]"}
+
+        ${
+          open
+            ? "min-h-[350px]"
+            : "min-h-[275px]"
+        }
       `}
     >
-
-      {/* Background Glow */}
+      {/* =================================================
+          BACKGROUND GLOW
+      ================================================= */}
 
       <div
         className="
@@ -130,27 +208,31 @@ const InfoCard = ({
           blur-[80px]
           transition-all
           duration-700
-          group-hover:bg-white/[0.06]
+          group-hover:bg-white/[0.07]
         "
       />
 
-      {/* 3D Particles */}
+      {/* =================================================
+          3D BACKGROUND
+      ================================================= */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          opacity-25
+          opacity-50
           transition-opacity
           duration-700
-          group-hover:opacity-60
+          group-hover:opacity-100
         "
       >
         <MiniUniverse />
       </div>
 
-      {/* Card Gradient */}
+      {/* =================================================
+          DARK OVERLAY
+      ================================================= */}
 
       <div
         className="
@@ -158,20 +240,21 @@ const InfoCard = ({
           absolute
           inset-0
           bg-gradient-to-br
-          from-white/[0.02]
+          from-white/[0.025]
           via-transparent
-          to-black/[0.25]
+          to-black/[0.35]
         "
       />
 
-      {/* Content */}
+      {/* =================================================
+          CONTENT
+      ================================================= */}
 
       <div className="relative z-10 p-7 md:p-8">
-
         <div className="flex items-start justify-between gap-6">
+          {/* TITLE */}
 
           <div>
-
             <span
               className="
                 mb-3
@@ -196,10 +279,9 @@ const InfoCard = ({
             >
               {title}
             </h3>
-
           </div>
 
-          {/* Arrow */}
+          {/* ARROW */}
 
           <div
             className={`
@@ -212,13 +294,16 @@ const InfoCard = ({
               rounded-full
               border
               border-white/10
-              bg-white/[0.05]
+              bg-black/30
               text-lg
               text-zinc-400
+              backdrop-blur-md
               transition-all
               duration-500
+
               group-hover:border-white/30
               group-hover:text-white
+
               ${
                 open
                   ? "rotate-90 border-white bg-white text-black"
@@ -228,10 +313,11 @@ const InfoCard = ({
           >
             →
           </div>
-
         </div>
 
-        {/* Description */}
+        {/* =================================================
+            DESCRIPTION
+        ================================================= */}
 
         <div
           className={`
@@ -239,6 +325,7 @@ const InfoCard = ({
             transition-all
             duration-700
             ease-in-out
+
             ${
               open
                 ? "mt-8 max-h-[180px] opacity-100"
@@ -258,10 +345,11 @@ const InfoCard = ({
             {description}
           </p>
         </div>
-
       </div>
 
-      {/* Image */}
+      {/* =================================================
+          IMAGE
+      ================================================= */}
 
       <div
         className={`
@@ -274,6 +362,7 @@ const InfoCard = ({
           border-white/10
           transition-all
           duration-700
+
           ${
             open
               ? "h-[125px] w-[185px]"
@@ -300,17 +389,18 @@ const InfoCard = ({
             absolute
             inset-0
             bg-gradient-to-t
-            from-black/50
+            from-black/60
             via-transparent
             to-transparent
           "
         />
       </div>
 
-      {/* Bottom Indicator */}
+      {/* =================================================
+          BOTTOM INDICATOR
+      ================================================= */}
 
       <div className="absolute bottom-7 left-7">
-
         <span
           className="
             text-[9px]
@@ -322,17 +412,35 @@ const InfoCard = ({
             group-hover:text-zinc-300
           "
         >
-          {open ? "Click to close" : "Click to explore"}
+          {open
+            ? "Click to close"
+            : "Click to explore"}
         </span>
-
       </div>
 
+      {/* =================================================
+          CARD NUMBER
+      ================================================= */}
+
+      <span
+        className="
+          absolute
+          bottom-7
+          right-7
+          text-[10px]
+          tracking-[0.3em]
+          text-zinc-700
+          md:right-9
+        "
+      >
+        {number}
+      </span>
     </article>
   );
 };
 
 /* =========================================================
-   ABOUT
+   ABOUT SECTION
 ========================================================= */
 
 const About = () => {
@@ -350,10 +458,9 @@ const About = () => {
         lg:py-36
       "
     >
-
-      {/* =========================================
-          NO SOLID BACKGROUND HERE
-      ========================================== */}
+      {/* =================================================
+          SECTION GLOW
+      ================================================= */}
 
       <div
         className="
@@ -371,15 +478,12 @@ const About = () => {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl">
-
-        {/* =========================================
+        {/* =================================================
             HEADER
-        ========================================== */}
+        ================================================= */}
 
         <div className="mb-16">
-
           <div className="mb-8 flex items-center gap-3">
-
             <span
               className="
                 h-2
@@ -400,7 +504,6 @@ const About = () => {
             >
               About Us
             </span>
-
           </div>
 
           <div
@@ -411,6 +514,7 @@ const About = () => {
               lg:grid-cols-[1.15fr_0.85fr]
             "
           >
+            {/* HEADING */}
 
             <h2
               className="
@@ -443,11 +547,14 @@ const About = () => {
               <br />
 
               Impact
-              <span className="text-zinc-600">.</span>
+              <span className="text-zinc-600">
+                .
+              </span>
             </h2>
 
-            <div className="max-w-[450px]">
+            {/* DESCRIPTION */}
 
+            <div className="max-w-[450px]">
               <p
                 className="
                   text-sm
@@ -456,14 +563,14 @@ const About = () => {
                   md:text-base
                 "
               >
-                We help ambitious brands grow through creativity,
-                strategy, technology, and meaningful storytelling.
-                We turn ideas into digital experiences that people
+                We help ambitious brands grow through
+                creativity, strategy, technology, and
+                meaningful storytelling. We turn ideas
+                into digital experiences that people
                 remember.
               </p>
 
               <div className="mt-6 flex items-center gap-4">
-
                 <span className="h-px w-12 bg-white/25" />
 
                 <span
@@ -476,27 +583,21 @@ const About = () => {
                 >
                   Strategy × Creativity
                 </span>
-
               </div>
-
             </div>
-
           </div>
-
         </div>
 
-        {/* =========================================
+        {/* =================================================
             SERVICE PILLS
-        ========================================== */}
+        ================================================= */}
 
         <div className="mb-8 grid gap-3 sm:grid-cols-3">
-
           {[
             "Media",
             "Advertising",
             "Marketing",
           ].map((item) => (
-
             <div
               key={item}
               className="
@@ -517,7 +618,6 @@ const About = () => {
                 hover:bg-white/[0.06]
               "
             >
-
               <span
                 className="
                   flex
@@ -554,16 +654,13 @@ const About = () => {
               >
                 {item}
               </span>
-
             </div>
-
           ))}
-
         </div>
 
-        {/* =========================================
+        {/* =================================================
             IMAGE + CARDS
-        ========================================== */}
+        ================================================= */}
 
         <div
           className="
@@ -572,8 +669,9 @@ const About = () => {
             lg:grid-cols-[1.05fr_0.95fr]
           "
         >
-
-          {/* Main Image */}
+          {/* =================================================
+              MAIN IMAGE
+          ================================================= */}
 
           <div
             className="
@@ -589,7 +687,6 @@ const About = () => {
               lg:h-[570px]
             "
           >
-
             <img
               src={aboutImage}
               alt="About Zedital Media"
@@ -626,9 +723,7 @@ const About = () => {
                 justify-between
               "
             >
-
               <div>
-
                 <p
                   className="
                     text-[10px]
@@ -643,21 +738,19 @@ const About = () => {
                 <p className="mt-2 text-sm text-white/90">
                   Building brands with purpose.
                 </p>
-
               </div>
 
               <span className="text-xs text-white/40">
                 01 / 03
               </span>
-
             </div>
-
           </div>
 
-          {/* Cards */}
+          {/* =================================================
+              INFO CARDS
+          ================================================= */}
 
           <div className="flex flex-col gap-8">
-
             <InfoCard
               title="OUR VISION"
               number="01"
@@ -671,19 +764,15 @@ const About = () => {
               image={missionImage}
               description="At Zedital Media, our mission is to bridge the gap between brands and people through strategies that not only sell, but connect, inspire and create meaningful experiences."
             />
-
           </div>
-
         </div>
 
-        {/* =========================================
+        {/* =================================================
             BOTTOM STATEMENT
-        ========================================== */}
+        ================================================= */}
 
         <div className="mt-14">
-
           <div className="flex items-center gap-5">
-
             <span
               className="
                 text-[10px]
@@ -720,7 +809,6 @@ const About = () => {
             >
               Impact
             </span>
-
           </div>
 
           <p
@@ -738,14 +826,12 @@ const About = () => {
             We don't just create campaigns.
 
             <span className="text-zinc-500">
-              {" "}We create brands people remember.
+              {" "}
+              We create brands people remember.
             </span>
           </p>
-
         </div>
-
       </div>
-
     </section>
   );
 };
